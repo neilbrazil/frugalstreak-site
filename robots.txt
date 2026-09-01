@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /frugalstreak-site/landing/
+
+Sitemap: https://neilbrazil.github.io/frugalstreak-site/sitemap.xml

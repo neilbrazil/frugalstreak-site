@@ -1,0 +1,248 @@
+/* FrugalStreak site styles. Palette taken from the app's AppColors.swift so
+   the site and the app read as one product. Dark only, like the app. */
+
+:root {
+  --bg: #0d120f;
+  --surface: #1c241e;
+  --surface-high: #2b352e;
+  --accent: #29d18c;
+  --text: #ffffff;
+  --muted: #8c8c8c;
+  --divider: #3f3f3f;
+  --measure: 68ch;
+  --wide: 1040px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  overflow-wrap: break-word;
+}
+
+a { color: var(--accent); }
+a:hover { color: #55e0a8; }
+
+img, svg { max-width: 100%; }
+
+h1, h2, h3 { line-height: 1.2; letter-spacing: -0.02em; }
+h1 { font-size: clamp(2rem, 5vw, 3.1rem); margin: 0 0 0.5em; }
+h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); margin: 2.2rem 0 0.7rem; }
+h3 { font-size: 1.1rem; margin: 0 0 0.4rem; }
+
+.lede { font-size: 1.12rem; color: #cfcfcf; margin: 0 0 1.4rem; }
+.meta { color: var(--muted); font-size: 0.92rem; }
+
+/* Header and footer ------------------------------------------------------ */
+
+.site-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 1.1rem 1.25rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 1.06rem;
+  text-decoration: none;
+}
+.brand .leaf { color: var(--accent); flex: none; }
+
+.site-nav { display: flex; gap: 1.25rem; font-size: 0.95rem; }
+.site-nav a { color: #cfcfcf; text-decoration: none; }
+.site-nav a:hover { color: var(--accent); }
+
+.site-foot {
+  max-width: var(--wide);
+  margin: 3rem auto 0;
+  padding: 2rem 1.25rem 3rem;
+  border-top: 1px solid var(--divider);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.site-foot nav { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-bottom: 1rem; }
+
+/* Hero ------------------------------------------------------------------- */
+
+.hero {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 1rem;
+}
+.hero--sm { padding-bottom: 0; }
+
+.hero--split {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: center;
+  padding-top: 3rem;
+}
+.hero-copy { min-width: 0; }
+
+@media (max-width: 760px) {
+  .hero--split { grid-template-columns: 1fr; }
+}
+
+.streak-card {
+  background: var(--surface);
+  border: 1px solid var(--surface-high);
+  border-radius: 22px;
+  padding: 1.8rem 1.5rem;
+  text-align: center;
+  color: var(--accent);
+}
+.streak-num {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 0.4rem;
+  color: var(--text);
+}
+.streak-label { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.2rem; }
+
+.heat {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+.heat span {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background: var(--surface-high);
+}
+.heat span.on { background: var(--accent); }
+
+/* Call to action --------------------------------------------------------- */
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: var(--accent);
+  color: #06110b;
+  font-weight: 650;
+  padding: 0.8rem 1.4rem;
+  border-radius: 999px;
+  text-decoration: none;
+}
+.cta:hover { background: #55e0a8; color: #06110b; }
+.cta--sm { font-size: 0.95rem; padding: 0.62rem 1.1rem; }
+.cta--pending {
+  background: transparent;
+  color: var(--accent);
+  border: 1px dashed var(--accent);
+  cursor: default;
+}
+
+/* Bands ------------------------------------------------------------------ */
+
+.band {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 1.6rem 1.25rem 2.2rem;
+}
+.band--alt {
+  background: var(--surface);
+  max-width: none;
+  padding-inline: 1.25rem;
+  margin-top: 1.5rem;
+}
+.band--alt > * { max-width: var(--wide); margin-inline: auto; }
+.band--cta { text-align: center; }
+
+.grid {
+  display: grid;
+  gap: 1.6rem 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.grid p { color: #c4c4c4; margin: 0; }
+
+/* margin-block, not the margin shorthand: inside .band--alt the `> *` rule
+   centres children with margin-inline:auto, and a shorthand here would
+   reset that and shove the list to the page edge. */
+.ticks { list-style: none; padding: 0; margin-block: 0 1rem; }
+.ticks li { padding-left: 1.7rem; position: relative; margin-bottom: 0.6rem; color: #c4c4c4; }
+.ticks li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.7rem;
+  height: 0.4rem;
+  border-left: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(-45deg);
+}
+
+.links { list-style: none; padding: 0; margin: 0; }
+.links li { padding: 0.9rem 0; border-bottom: 1px solid var(--divider); }
+.links li:last-child { border-bottom: 0; }
+.links a { font-weight: 600; text-decoration: none; }
+.links a:hover { text-decoration: underline; }
+.links span { display: block; color: var(--muted); font-size: 0.95rem; margin-top: 0.2rem; }
+
+.faq { margin: 0; }
+.faq > div { padding: 0.9rem 0; border-bottom: 1px solid var(--divider); }
+.faq > div:last-child { border-bottom: 0; }
+.faq dt { font-weight: 650; margin-bottom: 0.35rem; }
+.faq dd { margin: 0; color: #c4c4c4; }
+
+/* Long-form -------------------------------------------------------------- */
+
+.prose {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 2rem 1.25rem 1rem;
+}
+.prose p { color: #d2d2d2; }
+.prose h2 { margin-top: 2.4rem; }
+/* Tailwind is not in use here, but list markers are restored explicitly so
+   long-form lists survive any future reset. */
+.prose ol { list-style: decimal; }
+.prose ul { list-style: disc; }
+
+.crumbs { font-size: 0.9rem; color: var(--muted); margin-bottom: 1.2rem; }
+.crumbs a { text-decoration: none; }
+
+.callout {
+  background: var(--surface);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 12px 12px 0;
+  padding: 1.1rem 1.2rem;
+  margin: 1.8rem 0;
+}
+.callout p { margin: 0 0 0.9rem; color: #d2d2d2; }
+
+.takeaway {
+  border-top: 1px solid var(--divider);
+  border-bottom: 1px solid var(--divider);
+  padding: 1.1rem 0;
+  margin: 2.2rem 0;
+  font-weight: 600;
+  color: var(--text) !important;
+}
+
+.related { margin-top: 2.6rem; }
+.end-cta { margin: 2rem 0 1rem; }
+
+/* Static pages shipped verbatim from public/ (privacy.html, terms.html) --- */
+
+.doc { max-width: var(--measure); margin: 0 auto; padding: 2.5rem 1.25rem 3rem; }
+.doc p, .doc li { color: #d2d2d2; }
+.doc ul { padding-left: 1.2rem; }
