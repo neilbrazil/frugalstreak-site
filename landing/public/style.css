@@ -1,21 +1,50 @@
-/* FrugalStreak site styles. Palette taken from the app's AppColors.swift so
-   the site and the app read as one product. Dark only, like the app. */
+/* FrugalStreak site styles. Palette taken from the app's asset catalog so the
+   site and the app read as one product — including the light/dark split, since
+   the app follows the system appearance and a dark-only site would contradict
+   it on the same device. Every colour is a token; nothing below hardcodes one,
+   or it would fail to adapt in exactly one appearance and nobody would notice.
+
+   `--accent` is the app's accent and is for FILLS. It is gold, so it only
+   reaches 2.4:1 on the cream page and must never carry text or a thin line.
+   `--accent-text` is the darkened link/stroke variant that does (4.8:1), and
+   `--on-accent` is the ink that sits ON a filled accent (6.2:1 light,
+   8.6:1 dark) — the same three-way split the app uses. */
 
 :root {
-  --bg: #0d120f;
-  --surface: #1c241e;
-  --surface-high: #2b352e;
-  --accent: #29d18c;
-  --text: #ffffff;
-  --muted: #8c8c8c;
-  --divider: #3f3f3f;
+  --bg: #eee8da;
+  --surface: #feffff;
+  --surface-high: #e4dcc8;
+  --accent: #c88b3a;
+  --accent-hover: #b87c2c;
+  --accent-text: #8a5a18;
+  --on-accent: #1a1611;
+  --text: #241f17;
+  --text-soft: #4a4236;
+  --muted: #6b6153;
+  --divider: #d8d0be;
   --measure: 68ch;
   --wide: 1040px;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0c110f;
+    --surface: #1c241f;
+    --surface-high: #2b362e;
+    --accent: #e0a954;
+    --accent-hover: #edbb6e;
+    --accent-text: #e8b968;
+    --on-accent: #1a1611;
+    --text: #ffffff;
+    --text-soft: #cfcfcf;
+    --muted: #8c8c8c;
+    --divider: #404040;
+  }
+}
+
 * { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; color-scheme: light dark; }
 
 body {
   margin: 0;
@@ -26,8 +55,8 @@ body {
   overflow-wrap: break-word;
 }
 
-a { color: var(--accent); }
-a:hover { color: #55e0a8; }
+a { color: var(--accent-text); }
+a:hover { color: var(--accent-hover); }
 
 img, svg { max-width: 100%; }
 
@@ -36,7 +65,7 @@ h1 { font-size: clamp(2rem, 5vw, 3.1rem); margin: 0 0 0.5em; }
 h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); margin: 2.2rem 0 0.7rem; }
 h3 { font-size: 1.1rem; margin: 0 0 0.4rem; }
 
-.lede { font-size: 1.12rem; color: #cfcfcf; margin: 0 0 1.4rem; }
+.lede { font-size: 1.12rem; color: var(--text-soft); margin: 0 0 1.4rem; }
 .meta { color: var(--muted); font-size: 0.92rem; }
 
 /* Header and footer ------------------------------------------------------ */
@@ -64,8 +93,8 @@ h3 { font-size: 1.1rem; margin: 0 0 0.4rem; }
 .brand .leaf { color: var(--accent); flex: none; }
 
 .site-nav { display: flex; gap: 1.25rem; font-size: 0.95rem; }
-.site-nav a { color: #cfcfcf; text-decoration: none; }
-.site-nav a:hover { color: var(--accent); }
+.site-nav a { color: var(--text-soft); text-decoration: none; }
+.site-nav a:hover { color: var(--accent-text); }
 
 .site-foot {
   max-width: var(--wide);
@@ -135,18 +164,18 @@ h3 { font-size: 1.1rem; margin: 0 0 0.4rem; }
   align-items: center;
   gap: 0.55rem;
   background: var(--accent);
-  color: #06110b;
+  color: var(--on-accent);
   font-weight: 650;
   padding: 0.8rem 1.4rem;
   border-radius: 999px;
   text-decoration: none;
 }
-.cta:hover { background: #55e0a8; color: #06110b; }
+.cta:hover { background: var(--accent-hover); color: var(--on-accent); }
 .cta--sm { font-size: 0.95rem; padding: 0.62rem 1.1rem; }
 .cta--pending {
   background: transparent;
-  color: var(--accent);
-  border: 1px dashed var(--accent);
+  color: var(--accent-text);
+  border: 1px dashed var(--accent-text);
   cursor: default;
 }
 
@@ -171,13 +200,13 @@ h3 { font-size: 1.1rem; margin: 0 0 0.4rem; }
   gap: 1.6rem 2rem;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
-.grid p { color: #c4c4c4; margin: 0; }
+.grid p { color: var(--text-soft); margin: 0; }
 
 /* margin-block, not the margin shorthand: inside .band--alt the `> *` rule
    centres children with margin-inline:auto, and a shorthand here would
    reset that and shove the list to the page edge. */
 .ticks { list-style: none; padding: 0; margin-block: 0 1rem; }
-.ticks li { padding-left: 1.7rem; position: relative; margin-bottom: 0.6rem; color: #c4c4c4; }
+.ticks li { padding-left: 1.7rem; position: relative; margin-bottom: 0.6rem; color: var(--text-soft); }
 .ticks li::before {
   content: "";
   position: absolute;
@@ -185,8 +214,8 @@ h3 { font-size: 1.1rem; margin: 0 0 0.4rem; }
   top: 0.55em;
   width: 0.7rem;
   height: 0.4rem;
-  border-left: 2px solid var(--accent);
-  border-bottom: 2px solid var(--accent);
+  border-left: 2px solid var(--accent-text);
+  border-bottom: 2px solid var(--accent-text);
   transform: rotate(-45deg);
 }
 
@@ -201,7 +230,7 @@ h3 { font-size: 1.1rem; margin: 0 0 0.4rem; }
 .faq > div { padding: 0.9rem 0; border-bottom: 1px solid var(--divider); }
 .faq > div:last-child { border-bottom: 0; }
 .faq dt { font-weight: 650; margin-bottom: 0.35rem; }
-.faq dd { margin: 0; color: #c4c4c4; }
+.faq dd { margin: 0; color: var(--text-soft); }
 
 /* Long-form -------------------------------------------------------------- */
 
@@ -210,7 +239,7 @@ h3 { font-size: 1.1rem; margin: 0 0 0.4rem; }
   margin: 0 auto;
   padding: 2rem 1.25rem 1rem;
 }
-.prose p { color: #d2d2d2; }
+.prose p { color: var(--text-soft); }
 .prose h2 { margin-top: 2.4rem; }
 /* Tailwind is not in use here, but list markers are restored explicitly so
    long-form lists survive any future reset. */
@@ -227,7 +256,7 @@ h3 { font-size: 1.1rem; margin: 0 0 0.4rem; }
   padding: 1.1rem 1.2rem;
   margin: 1.8rem 0;
 }
-.callout p { margin: 0 0 0.9rem; color: #d2d2d2; }
+.callout p { margin: 0 0 0.9rem; color: var(--text-soft); }
 
 .takeaway {
   border-top: 1px solid var(--divider);
@@ -244,5 +273,5 @@ h3 { font-size: 1.1rem; margin: 0 0 0.4rem; }
 /* Static pages shipped verbatim from public/ (privacy.html, terms.html) --- */
 
 .doc { max-width: var(--measure); margin: 0 auto; padding: 2.5rem 1.25rem 3rem; }
-.doc p, .doc li { color: #d2d2d2; }
+.doc p, .doc li { color: var(--text-soft); }
 .doc ul { padding-left: 1.2rem; }

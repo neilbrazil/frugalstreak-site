@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""Draws the FrugalStreak site icon: a mint leaf on the app's dark ground.
+"""Draws the FrugalStreak site icon: a gold leaf on the app's cream ground.
 
-The app's own AppIcon slot is still empty, so this is the site's mark rather
-than a copy of the store icon. Colours come from AppColors.swift so the site
-and the app read as the same product. Deterministic: re-running reproduces
-the same file.
+This is the site's own mark, not a copy of the store icon — the store icon is
+an Icon Composer document whose layered, lit treatment does not survive being
+flattened to a 64px favicon. Colours are the app's light-appearance accent and
+background, so the two read as the same product. A favicon cannot respond to
+the viewer's appearance, so it commits to the light palette, which is the one
+the app opens in by default. Deterministic: re-running reproduces the same file.
 
 The leaf is a vesica — the overlap of two equal circles. The lens is elongated
 PERPENDICULAR to the line joining the centres, so to point the leaf along the
@@ -13,8 +15,8 @@ top-left/bottom-right diagonal the centres sit on the other diagonal.
 import math
 from PIL import Image, ImageChops, ImageDraw
 
-BG = (13, 18, 15)        # AppColors.background
-ACCENT = (41, 209, 140)  # AppColors.accent
+BG = (238, 232, 218)     # `background` colorset, light
+ACCENT = (200, 139, 58)   # `AccentColor` colorset, light
 SS = 4                   # supersample factor, for clean edges
 
 HALF_LEN = 0.40          # leaf half-length, as a fraction of the canvas
