@@ -77,7 +77,7 @@ export const PRO = {
 export const FAQ: { q: string; a: string }[] = [
   {
     q: "Is FrugalStreak free?",
-    a: "Yes. Logging a no-spend day, your streak count, the five-week heatmap and the milestone badges are free with no time limit and no ads. A one-time $2.99 unlock adds your full streak history and custom widget colours.",
+    a: "Yes. Logging a no-spend day, your streak count, the five-week heatmap and the milestone badges are free with no time limit. A one-time $2.99 unlock adds your full streak history and custom widget colours, and removes the small banner advert shown to free users.",
   },
   {
     q: "Do I have to connect my bank account?",

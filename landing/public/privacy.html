@@ -64,21 +64,25 @@
 
 <article>
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated 1 September 2026</p>
+  <p class="updated">Last updated DATE_OF_RELEASE</p>
 
   <p>
-    FrugalStreak: No Spend Tracker does not collect, store, or transmit any
-    personal information. There is no account, no sign-in, no backend, and no
-    data sync of any kind. The app has no way to identify you.
+    FrugalStreak: No Spend Tracker does not collect personal information.
+    There is no account, no sign-in, no backend, and no data sync of any kind.
+    The app has no way to identify you. It uses three third-party services,
+    each described below: RevenueCat for the optional unlock, TelemetryDeck for
+    anonymous usage statistics, and Kickstart Exchange for a small banner
+    advert shown to free users.
   </p>
 
   <div class="callout">
     <p>
       <strong>There is no bank connection.</strong> FrugalStreak cannot link to
       a bank, import transactions, or read anything about your actual finances.
-      Its only input is you deciding whether today was a no-spend day. Nothing
-      leaves your device, and there is no analytics SDK and no advertising SDK
-      anywhere in the app.
+      Its only input is you deciding whether today was a no-spend day. Your
+      logged days, your streak, and your rule never leave your device, and none
+      of the services below receive them. Nothing is used to track you across
+      other companies' apps or websites.
     </p>
   </div>
 
@@ -104,13 +108,47 @@
       <strong>Widget appearance settings.</strong> Your chosen accent colour is
       stored locally and used only to draw the widget.
     </li>
-    <li>
-      <strong>Usage events</strong> (app launched, day logged, streak reset,
-      milestone reached, purchase completed, review prompt shown). These are
-      written to Apple's local system log (<code>OSLog</code>) for on-device
-      debugging only. They are never sent anywhere, not even to us.
-    </li>
   </ul>
+
+  <h2>Anonymous usage statistics</h2>
+  <p>
+    FrugalStreak uses TelemetryDeck, a privacy-focused analytics service, to
+    learn which parts of the app are used. When something happens in the app,
+    such as launching it, logging or unlogging a day, resetting a streak,
+    reaching a milestone, moving through onboarding, or opening or closing the
+    unlock screen, the app sends the name of that event. Some events carry a
+    short label from a fixed list, such as which screen opened the unlock
+    screen.
+  </p>
+  <p>
+    Each event also carries general technical details, such as the app
+    version, iOS version, device model, and language and region settings,
+    plus an anonymous identifier that TelemetryDeck hashes before storing, so
+    it cannot be traced back to you or your device. Events never contain your
+    logged days, your streak dates, your rule, or anything you type.
+    TelemetryDeck's privacy policy is at
+    <a href="https://telemetrydeck.com/privacy/">telemetrydeck.com/privacy</a>.
+  </p>
+
+  <h2>Advertising</h2>
+  <p>
+    Free users see one small banner advert for another app, provided by
+    Kickstart Exchange. Buying the optional unlock removes it. Kickstart
+    Exchange matches apps, not people: it does not track you or your device,
+    and it does not use an advertising identifier.
+  </p>
+  <p>
+    To show an advert, the app sends Kickstart Exchange app-level details: the
+    app's identity and version, the advertising SDK version, the platform, and
+    the App Store country, so it can suggest apps you are able to install. To
+    confirm the request comes from a genuine App Store copy of FrugalStreak,
+    it also sends a receipt signed by Apple for this app. Kickstart Exchange
+    records which adverts were shown and tapped, keeps those records for about
+    30 days, and they do not identify you or your device. If you tap an
+    advert, the App Store opens, and anything after that is handled by Apple.
+    Kickstart Exchange's privacy notice is at
+    <a href="https://exchange.kickstart.tools/privacy">exchange.kickstart.tools/privacy</a>.
+  </p>
 
   <h2>The optional unlock</h2>
   <p>
@@ -141,19 +179,22 @@
 
   <h2>What we receive</h2>
   <p>
-    Nothing directly. If you download FrugalStreak from the App Store, Apple
-    may share aggregate statistics such as download counts and territory with
-    us as the developer. That data comes from Apple and is not personally
+    Nothing that identifies you. We see the anonymous usage statistics
+    described above as totals in TelemetryDeck, and app-level advert figures
+    in Kickstart Exchange. If you download FrugalStreak from the App Store,
+    Apple may share aggregate statistics such as download counts and territory
+    with us as the developer. That data comes from Apple and is not personally
     identifying. If you email us for support, we receive whatever you put in
     that email.
   </p>
 
   <h2>Your data, and removing it</h2>
   <p>
-    Because nothing is collected or transmitted, there is no account to close
-    and no data held by us to access, correct, export, or delete. Everything
-    the app has saved lives in its container on your device, and deleting the
-    app removes it, including your streak history and any widget data.
+    Because nothing we receive identifies you, there is no account to close
+    and no personal data held by us to access, correct, export, or delete.
+    Everything the app has saved lives in its container on your device, and
+    deleting the app removes it, including your streak history and any widget
+    data.
   </p>
 
   <h2>Children</h2>
@@ -164,9 +205,8 @@
 
   <h2>Changes to this policy</h2>
   <p>
-    If a future version of FrugalStreak ever needs to collect or transmit data,
-    and there are no plans for it to, this policy will be updated before that
-    version ships.
+    If a future version of FrugalStreak changes what it collects or transmits,
+    this policy will be updated before that version ships.
   </p>
 
   <h2>Contact</h2>
