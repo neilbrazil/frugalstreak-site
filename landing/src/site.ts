@@ -19,7 +19,7 @@ export const APP_LIVE = true;
  *  Generate Campaign Link (the `pt` value). App Analytics only attributes a
  *  campaign link that carries both `pt` and `ct`, so until this is filled in
  *  the `ct` tokens below are emitted but not counted. */
-export const PROVIDER_TOKEN = "";
+export const PROVIDER_TOKEN = "545699";
 
 /** An App Store link tagged with a campaign token naming the page and spot it
  *  sits on, e.g. "home-de" or "guide-no-spend-january". Campaign downloads
