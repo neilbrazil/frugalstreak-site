@@ -9,6 +9,13 @@ import {
 } from "./content";
 import { abs, APP_LIVE, APP_STORE_URL, SITE } from "./site";
 
+/** The site's author and publisher, for JSON-LD. */
+const PERSON = { "@type": "Person", name: APP.author, url: APP.authorUrl };
+
+/** A content date as a full ISO 8601 datetime. Google flags a bare date in
+ *  Article dates as missing a time zone. */
+const isoDateTime = (date: string) => `${date}T09:00:00+00:00`;
+
 export type PageMeta = {
   path: string;
   lang: Lang;
@@ -70,7 +77,7 @@ export const softwareApplication = (c: Content) => ({
   screenshot: [c.hero.shot, ...c.gallery.shots].map((s) => shotUrl(c, s.file)),
   // aggregateRating is deliberately omitted: rating markup has to reflect
   // reviews shown on the page, and this page shows none.
-  author: { "@type": "Person", name: APP.author },
+  author: PERSON,
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
 });
 
@@ -146,10 +153,10 @@ export const guideMeta = (c: Content, g: Guide): PageMeta => {
         description: g.description,
         inLanguage: c.lang,
         image: ogImage(c),
-        datePublished: g.published,
-        dateModified: g.updated,
-        author: { "@type": "Person", name: APP.author },
-        publisher: { "@type": "Person", name: APP.author },
+        datePublished: isoDateTime(g.published),
+        dateModified: isoDateTime(g.updated),
+        author: PERSON,
+        publisher: PERSON,
         mainEntityOfPage: abs(path),
       },
       breadcrumbs(trail),

@@ -14,6 +14,7 @@ export const APP = {
   name: "FrugalStreak",
   fullName: "FrugalStreak — No Spend Tracker",
   author: "Neil Brazil",
+  authorUrl: "https://github.com/neilbrazil",
   minOS: "iOS 18",
 };
 
