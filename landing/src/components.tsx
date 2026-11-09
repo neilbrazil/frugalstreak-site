@@ -66,7 +66,7 @@ export function Header({ c }: { c: Content }) {
   return (
     <header className="site-head">
       <a className="brand" href={url(home)}>
-        <Leaf size={28} />
+        <Logo size={30} />
         <span>{APP.name}</span>
       </a>
       <nav className="site-nav" aria-label="Primary">
@@ -106,33 +106,23 @@ export function Footer({ c }: { c: Content }) {
   );
 }
 
-/** The leaf mark, drawn rather than loaded. Same geometry as
- *  scripts/genicon.py: a vesica (the overlap of two circles) with a midrib,
- *  rotated onto the diagonal. Keep the two in step if either changes. */
-export function Leaf({ size = 96 }: { size?: number }) {
-  // Arc radius for a lens 80 long and 26 wide: (l^2 + w^2) / 2w.
-  const R = 68.04;
+/** The app icon, drawn inline so the header needs no extra request. Same
+ *  geometry and colours as scripts/genicon.py, which takes them from the app's
+ *  Icon Composer layers. Keep the two in step if either changes. */
+export function Logo({ size = 96 }: { size?: number }) {
   return (
     <svg
-      className="leaf"
+      className="logo"
       viewBox="0 0 100 100"
       width={size}
       height={size}
       aria-hidden="true"
     >
-      <g transform="rotate(45 50 50)">
-        <path
-          fill="currentColor"
-          d={`M50 10 A${R} ${R} 0 0 1 50 90 A${R} ${R} 0 0 1 50 10 Z`}
-        />
-        <path
-          d="M50 12 L50 70"
-          stroke="var(--bg)"
-          strokeWidth="2.4"
-          strokeLinecap="round"
-          fill="none"
-        />
-      </g>
+      <rect width="100" height="100" rx="22.4" fill="#EEE8DA" />
+      <rect x="30" y="26" width="40" height="15" rx="7.5" fill="#E8A33D" />
+      <rect x="24" y="45" width="52" height="15" rx="7.5" fill="#DE4E33" />
+      <rect x="18" y="64" width="64" height="15" rx="7.5" fill="#8E2413" />
+      <circle cx="78" cy="22" r="6" fill="#14161A" />
     </svg>
   );
 }

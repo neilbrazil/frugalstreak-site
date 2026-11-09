@@ -55,7 +55,7 @@ for (const c of LOCALES) {
     body{background:#eee8da;color:#241f17;font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;
       display:grid;grid-template-columns:1fr 360px;align-items:center;gap:40px;padding:0 70px;box-sizing:border-box}
     .brand{display:flex;align-items:center;gap:18px;font-size:34px;font-weight:700;margin-bottom:34px}
-    .brand img{width:72px;height:72px;border-radius:16px}
+    .brand img{width:72px;height:72px;border-radius:16px;box-shadow:0 0 0 2px #d8d0be}
     h1{font-size:58px;line-height:1.08;letter-spacing:-0.02em;margin:0 0 22px}
     p{font-size:26px;color:#4a4236;margin:0}
     .shot{width:300px;border-radius:34px;border:2px solid #d8d0be;align-self:start;margin-top:70px;box-shadow:0 20px 50px rgba(36,31,23,.18)}

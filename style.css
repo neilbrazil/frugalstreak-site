@@ -90,7 +90,9 @@ h3 { font-size: 1.1rem; margin: 0 0 0.4rem; }
   font-size: 1.06rem;
   text-decoration: none;
 }
-.brand .leaf { color: var(--accent); flex: none; }
+.brand .logo { flex: none; }
+/* The cream tile vanishes into the cream page; a hairline keeps its edge. */
+.brand .logo rect:first-child { stroke: var(--divider); stroke-width: 2; }
 
 .site-nav { display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; font-size: 0.95rem; }
 .site-nav a { color: var(--text-soft); text-decoration: none; }

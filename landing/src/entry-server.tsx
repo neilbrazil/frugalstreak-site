@@ -68,7 +68,8 @@ ${smartBanner}<meta property="og:type" content="website">
 <meta name="twitter:image" content="${esc(meta.image)}">
 <meta name="theme-color" content="#EEE8DA" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0C110F" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" href="${esc(url("assets/favicon.png"))}">
+<link rel="icon" type="image/svg+xml" href="${esc(url("assets/logo.svg"))}">
+<link rel="icon" type="image/png" sizes="64x64" href="${esc(url("assets/favicon.png"))}">
 <link rel="apple-touch-icon" href="${esc(url("assets/apple-touch-icon.png"))}">
 <link rel="stylesheet" href="${esc(url("style.css"))}">
 ${ld}
