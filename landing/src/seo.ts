@@ -62,9 +62,9 @@ const website = () => ({
 
 export const homeMeta = (): PageMeta => ({
   path: "/",
-  title: "FrugalStreak — No Spend Tracker for iPhone",
+  title: "FrugalStreak — No Spend Tracker for iPhone and iPad",
   description:
-    "Track no-spend days with one tap from your Home Screen. No budget to build and no bank account to link. Free on iPhone, and it works offline.",
+    "Track no-spend days with one tap from your Home Screen. No budget to build and no bank account to link. Free on iPhone and iPad, and it works offline.",
   image: abs("assets/icon.png"),
   jsonld: [softwareApplication(), website(), faqPage(FAQ)],
 });

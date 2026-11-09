@@ -47,7 +47,7 @@ export const FEATURES: { h: string; p: string }[] = [
   },
   {
     h: "The run of days is the point",
-    p: "A heatmap of the last five weeks sits on the first screen, next to the current count. Watching a block of days fill in is the reason streaks work at all, so it is the first thing you see rather than something buried in a report.",
+    p: "A calendar of the last five weeks sits on the first screen, next to the current count. Missed logging a day? Tap it in the calendar. Watching a block of days fill in is the reason streaks work at all, so it is the first thing you see rather than something buried in a report.",
   },
   {
     h: "Being honest costs you nothing",
@@ -59,7 +59,7 @@ export const FEATURES: { h: string; p: string }[] = [
   },
   {
     h: "No account and no bank connection",
-    p: "There is no sign-up and no server. Your streak lives on your iPhone and the app works with the network switched off. Nothing about your spending is transmitted anywhere, because there is nothing to transmit.",
+    p: "There is no sign-up and no server. Your streak lives on your device and the app works with the network switched off. Nothing about your spending is transmitted anywhere, because there is nothing to transmit.",
   },
 ];
 
@@ -69,7 +69,7 @@ export const PRO = {
   points: [
     "Your full streak history: every run you have finished, with its length and dates, not just the one you are on",
     "Custom widget colours",
-    "Logging, the streak count, the heatmap and the badges all stay free",
+    "Logging, the streak count, the calendar and the badges all stay free",
   ],
   pricing: "$2.99, paid once. There is no subscription.",
 };
@@ -77,7 +77,7 @@ export const PRO = {
 export const FAQ: { q: string; a: string }[] = [
   {
     q: "Is FrugalStreak free?",
-    a: "Yes. Logging a no-spend day, your streak count, the five-week heatmap and the milestone badges are free with no time limit. A one-time $2.99 unlock adds your full streak history and custom widget colours, and removes the small banner advert shown to free users.",
+    a: "Yes. Logging today or yesterday as a no-spend day, your streak count, the calendar and the milestone badges are free with no time limit. A one-time $2.99 unlock adds your full streak history, custom widget colours and logging any earlier day, and removes the small banner advert shown to free users.",
   },
   {
     q: "Do I have to connect my bank account?",
