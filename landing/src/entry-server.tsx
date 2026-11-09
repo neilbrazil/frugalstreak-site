@@ -1,9 +1,17 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { ROUTES, type Route } from "./routes";
-import { abs, APP_ID, APP_LIVE, GOOGLE_SITE_VERIFICATION, url } from "./site";
+import {
+  abs,
+  APP_ID,
+  APP_LIVE,
+  GOOGLE_SITE_VERIFICATION,
+  PROVIDER_TOKEN,
+  url,
+} from "./site";
 
 export { ROUTES };
 export { ORIGIN, BASE, abs } from "./site";
+export { LOCALES } from "./content";
 
 const esc = (s: string) =>
   s
@@ -21,22 +29,35 @@ export function renderRoute(route: Route): string {
     .join("");
 
   // The Smart App Banner is only emitted once the app is actually on sale;
-  // pointing it at an unreleased app-id shows visitors a broken banner.
+  // pointing it at an unreleased app-id shows visitors a broken banner. With a
+  // provider token, its affiliate-data carries a campaign token too, so
+  // banner downloads are counted per language.
+  const bannerCampaign = PROVIDER_TOKEN
+    ? `, affiliate-data=pt=${PROVIDER_TOKEN}&ct=banner-${meta.lang}`
+    : "";
   const smartBanner = APP_LIVE
-    ? `<meta name="apple-itunes-app" content="app-id=${APP_ID}">\n`
+    ? `<meta name="apple-itunes-app" content="app-id=${APP_ID}${esc(bannerCampaign)}">\n`
     : "";
 
+  const hreflang = meta.alternates
+    .map(
+      (a) =>
+        `<link rel="alternate" hreflang="${a.hreflang}" href="${esc(abs(a.path))}">\n`,
+    )
+    .join("");
+
   return `<!doctype html>
-<html lang="en">
+<html lang="${meta.lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(meta.title)}</title>
 <meta name="description" content="${esc(meta.description)}">
 <link rel="canonical" href="${esc(canonical)}">
-<meta name="google-site-verification" content="${GOOGLE_SITE_VERIFICATION}">
+${hreflang}<meta name="google-site-verification" content="${GOOGLE_SITE_VERIFICATION}">
 ${smartBanner}<meta property="og:type" content="website">
 <meta property="og:site_name" content="FrugalStreak">
+<meta property="og:locale" content="${meta.ogLocale}">
 <meta property="og:title" content="${esc(meta.title)}">
 <meta property="og:description" content="${esc(meta.description)}">
 <meta property="og:url" content="${esc(canonical)}">

@@ -1,10 +1,12 @@
 import { Page } from "../components";
-import { GUIDES } from "../data";
+import { guidePath, guidesNewestFirst, type Content } from "../content";
 import { url } from "../site";
 
-export default function GuidesIndex() {
+/** English only: the other languages carry one guide each, listed on their
+ *  home page. */
+export default function GuidesIndex({ c }: { c: Content }) {
   return (
-    <Page>
+    <Page c={c}>
       <section className="hero hero--sm">
         <h1>No-spend challenge guides</h1>
         <p className="lede">
@@ -14,9 +16,9 @@ export default function GuidesIndex() {
       </section>
       <section className="band">
         <ul className="links">
-          {GUIDES.map((g) => (
+          {guidesNewestFirst(c).map((g) => (
             <li key={g.slug}>
-              <a href={url(`guides/${g.slug}/`)}>{g.title}</a>
+              <a href={url(guidePath(c, g.slug))}>{g.title}</a>
               <span>{g.description}</span>
             </li>
           ))}

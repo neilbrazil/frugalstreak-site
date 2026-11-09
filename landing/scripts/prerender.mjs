@@ -1,6 +1,8 @@
 /** Renders every route in ROUTES to dist/<path>/index.html, copies public/
  *  verbatim, and generates sitemap.xml + robots.txt from the same route list
- *  so a new guide never needs a second edit to appear in either. */
+ *  so a new guide never needs a second edit to appear in either. Each
+ *  sitemap lastmod is the page's own `updated` date, not the build date: a
+ *  lastmod that changes on every build teaches Google to ignore it. */
 import { cpSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -16,7 +18,6 @@ rmSync(dist, { recursive: true, force: true });
 mkdirSync(dist, { recursive: true });
 cpSync(join(root, "public"), dist, { recursive: true });
 
-const today = new Date().toISOString().slice(0, 10);
 const locs = [];
 
 for (const route of ROUTES) {
@@ -25,10 +26,12 @@ for (const route of ROUTES) {
   const outDir = join(dist, rel);
   mkdirSync(outDir, { recursive: true });
   writeFileSync(join(outDir, "index.html"), html);
+  const home = !rel.includes("guides");
   locs.push({
     loc: abs(route.meta.path),
-    priority:
-      route.meta.path === "/" ? "1.0" : rel.startsWith("guides") ? "0.8" : "0.4",
+    lastmod: route.meta.updated,
+    alternates: route.meta.alternates,
+    priority: route.meta.path === "/" ? "1.0" : home ? "0.9" : "0.8",
   });
   console.log("rendered", route.meta.path);
 }
@@ -36,11 +39,18 @@ for (const route of ROUTES) {
 writeFileSync(
   join(dist, "sitemap.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>\n` +
-    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" ` +
+    `xmlns:xhtml="http://www.w3.org/1999/xhtml">\n` +
     locs
       .map(
         (u) =>
-          `  <url><loc>${u.loc}</loc><lastmod>${today}</lastmod>` +
+          `  <url><loc>${u.loc}</loc><lastmod>${u.lastmod}</lastmod>` +
+          u.alternates
+            .map(
+              (a) =>
+                `<xhtml:link rel="alternate" hreflang="${a.hreflang}" href="${abs(a.path)}"/>`,
+            )
+            .join("") +
           `<priority>${u.priority}</priority></url>`,
       )
       .join("\n") +

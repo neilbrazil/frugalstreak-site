@@ -15,6 +15,18 @@ export const SUPPORT_EMAIL = "neilbrazil83+apps@gmail.com";
  *  CTA, the smart banner and the JSON-LD `installUrl` all point at the store. */
 export const APP_LIVE = true;
 
+/** App Store Connect provider token, from App Analytics → Campaigns →
+ *  Generate Campaign Link (the `pt` value). App Analytics only attributes a
+ *  campaign link that carries both `pt` and `ct`, so until this is filled in
+ *  the `ct` tokens below are emitted but not counted. */
+export const PROVIDER_TOKEN = "";
+
+/** An App Store link tagged with a campaign token naming the page and spot it
+ *  sits on, e.g. "home-de" or "guide-no-spend-january". Campaign downloads
+ *  then show per page in App Analytics. */
+export const storeLink = (ct: string) =>
+  `${APP_STORE_URL}?${PROVIDER_TOKEN ? `pt=${PROVIDER_TOKEN}&` : ""}ct=${encodeURIComponent(ct)}&mt=8`;
+
 /** Google Search Console site-verification token. Google only reads this on
  *  the verified URL, but it is emitted on every page so a re-verification
  *  against any path still succeeds. Removing it un-verifies the property.
@@ -22,6 +34,14 @@ export const APP_LIVE = true;
  *  neilbrazil.github.io origin, which all three project pages share. */
 export const GOOGLE_SITE_VERIFICATION =
   "c2ceYkYa7YYI_VhHImzYbsitVUbdn5hZkYl3jHs13rk";
+
+/** The other apps' sites, for the footer. Same origin, so these links carry
+ *  little ranking weight, but they cost nothing. */
+export const OTHER_APPS = [
+  { name: "Swatchr", what: "Colour identifier", href: ORIGIN + "/swatchr-site/" },
+  { name: "OneStreak", what: "Habit tracker", href: ORIGIN + "/onestreak-site/" },
+  { name: "Milemark", what: "Pace calculator", href: ORIGIN + "/milemark-site/" },
+];
 
 /** Join a site-relative path onto the Pages base path. */
 export const url = (path: string) => BASE + path.replace(/^\//, "");

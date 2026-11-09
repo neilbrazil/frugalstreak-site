@@ -1,26 +1,27 @@
-import { Faq, Page, StoreCta, StreakCard } from "../components";
-import { APP, FAQ, FEATURES, GUIDES, HERO, PRO } from "../data";
+import { Faq, Page, ShotImg, StoreCta } from "../components";
+import { guidePath, guidesNewestFirst, type Content } from "../content";
 import { url } from "../site";
 
-export default function Home() {
+export default function Home({ c }: { c: Content }) {
+  const suffix = c.lang === "en" ? "" : `-${c.lang}`;
   return (
-    <Page>
+    <Page c={c}>
       <section className="hero hero--split">
         <div className="hero-copy">
-          <h1>{HERO.h1}</h1>
-          <p className="lede">{HERO.sub}</p>
-          <StoreCta />
-          <p className="meta">
-            {APP.price} · {APP.minOS}+ · No account · Works offline
-          </p>
+          <h1>{c.hero.h1}</h1>
+          <p className="lede">{c.hero.sub}</p>
+          <StoreCta c={c} ct={`home${suffix}`} />
+          <p className="meta">{c.ui.metaLine}</p>
         </div>
-        <StreakCard />
+        <div className="hero-shot">
+          <ShotImg c={c} shot={c.hero.shot} eager />
+        </div>
       </section>
 
       <section id="features" className="band">
-        <h2>What it does</h2>
+        <h2>{c.ui.featuresH}</h2>
         <div className="grid">
-          {FEATURES.map((f) => (
+          {c.features.map((f) => (
             <article key={f.h}>
               <h3>{f.h}</h3>
               <p>{f.p}</p>
@@ -29,42 +30,48 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="band">
+        <h2>{c.gallery.h}</h2>
+        <div className="gallery">
+          {c.gallery.shots.map((s) => (
+            <figure key={s.file}>
+              <ShotImg c={c} shot={s} />
+              <figcaption>{s.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
       <section className="band band--alt">
-        <h2>{PRO.h}</h2>
-        <p className="lede">{PRO.p}</p>
+        <h2>{c.pro.h}</h2>
+        <p className="lede">{c.pro.p}</p>
         <ul className="ticks">
-          {PRO.points.map((p) => (
+          {c.pro.points.map((p) => (
             <li key={p}>{p}</li>
           ))}
         </ul>
-        <p className="meta">{PRO.pricing}</p>
+        <p className="meta">{c.pro.pricing}</p>
       </section>
 
-      <section className="band">
-        <h2>Guides</h2>
-        <p className="lede">
-          How to set the rules, decide what counts, and keep going after the
-          day you slip.
-        </p>
+      <section id="guides" className="band">
+        <h2>{c.ui.guidesH}</h2>
+        <p className="lede">{c.ui.guidesLede}</p>
         <ul className="links">
-          {GUIDES.map((g) => (
+          {guidesNewestFirst(c).map((g) => (
             <li key={g.slug}>
-              <a href={url(`guides/${g.slug}/`)}>{g.title}</a>
+              <a href={url(guidePath(c, g.slug))}>{g.title}</a>
               <span>{g.description}</span>
             </li>
           ))}
         </ul>
       </section>
 
-      <Faq items={FAQ} />
+      <Faq items={c.faq} heading={c.ui.faqH} />
 
       <section className="band band--cta">
-        <h2>Start a streak today</h2>
-        <p className="lede">
-          Pick your rule, put the widget on your Home Screen, and tap it
-          tonight.
-        </p>
-        <StoreCta />
+        <h2>{c.ui.ctaH}</h2>
+        <p className="lede">{c.ui.ctaLede}</p>
+        <StoreCta c={c} ct={`home-end${suffix}`} />
       </section>
     </Page>
   );

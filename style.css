@@ -92,9 +92,19 @@ h3 { font-size: 1.1rem; margin: 0 0 0.4rem; }
 }
 .brand .leaf { color: var(--accent); flex: none; }
 
-.site-nav { display: flex; gap: 1.25rem; font-size: 0.95rem; }
+.site-nav { display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; font-size: 0.95rem; }
 .site-nav a { color: var(--text-soft); text-decoration: none; }
 .site-nav a:hover { color: var(--accent-text); }
+
+.langs { display: flex; gap: 0.2rem; font-size: 0.85rem; }
+.langs a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+}
+.langs a:hover { color: var(--accent-text); }
+.langs a[aria-current] { color: var(--text); background: var(--surface-high); font-weight: 650; }
 
 .site-foot {
   max-width: var(--wide);
@@ -104,7 +114,8 @@ h3 { font-size: 1.1rem; margin: 0 0 0.4rem; }
   color: var(--muted);
   font-size: 0.9rem;
 }
-.site-foot nav { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-bottom: 1rem; }
+.site-foot nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; margin-bottom: 1rem; }
+.more-apps span { color: var(--muted); }
 
 /* Hero ------------------------------------------------------------------- */
 
@@ -128,34 +139,39 @@ h3 { font-size: 1.1rem; margin: 0 0 0.4rem; }
   .hero--split { grid-template-columns: 1fr; }
 }
 
-.streak-card {
-  background: var(--surface);
-  border: 1px solid var(--surface-high);
-  border-radius: 22px;
-  padding: 1.8rem 1.5rem;
-  text-align: center;
-  color: var(--accent);
-}
-.streak-num {
-  font-size: 4rem;
-  font-weight: 700;
-  line-height: 1;
-  margin-top: 0.4rem;
-  color: var(--text);
-}
-.streak-label { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.2rem; }
-
-.heat {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
-}
-.heat span {
-  aspect-ratio: 1;
-  border-radius: 4px;
+/* Real screenshots from the app. Rounded like the device so a capture with a
+   status bar does not read as a cropped rectangle. */
+.shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 28px;
+  border: 1px solid var(--divider);
   background: var(--surface-high);
 }
-.heat span.on { background: var(--accent); }
+.hero-shot { max-width: 300px; justify-self: center; width: 100%; }
+
+.gallery {
+  display: grid;
+  gap: 1.6rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.gallery figure { margin: 0; }
+.gallery figcaption { color: var(--muted); font-size: 0.92rem; margin-top: 0.7rem; text-align: center; }
+@media (max-width: 760px) {
+  .hero-shot { max-width: 240px; }
+  /* Swipe through the screenshots instead of stacking three phone-height
+     images; the strip scrolls inside its own box, never the page. */
+  .gallery {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 62%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 0.5rem;
+  }
+  .gallery figure { scroll-snap-align: start; }
+}
 
 /* Call to action --------------------------------------------------------- */
 
@@ -248,6 +264,17 @@ h3 { font-size: 1.1rem; margin: 0 0 0.4rem; }
 
 .crumbs { font-size: 0.9rem; color: var(--muted); margin-bottom: 1.2rem; }
 .crumbs a { text-decoration: none; }
+.prose .updated { color: var(--muted); font-size: 0.88rem; margin: -0.6rem 0 1.2rem; }
+
+.printable a {
+  display: inline-block;
+  font-weight: 650;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid var(--accent-text);
+  border-radius: 10px;
+  text-decoration: none;
+}
+.printable a::before { content: "↓ "; }
 
 .callout {
   background: var(--surface);

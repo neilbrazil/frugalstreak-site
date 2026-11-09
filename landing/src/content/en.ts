@@ -1,117 +1,21 @@
-/** All site copy lives here. Pages are dumb; this file is the content.
+/** English copy. Every claim here has to be true of the shipping app; the
+ *  App Store description in the app's store.json is the reference.
  *
- *  Keyword targeting comes from the App Store and web research run on
- *  2026-09-01. On the App Store, "no spend tracker" returns a page of
- *  near-identical apps that almost all sit under 5 ratings, so the phrase is
- *  contested but unwon. On the web the head terms ("no spend challenge",
+ *  Keyword targeting: on the web the head terms ("no spend challenge",
  *  "no spend month") are held by banks and personal-finance publishers with
- *  domain authority no app site will beat, so the guides below target the
- *  task-shaped and problem-shaped long-tails underneath those terms instead.
- *  Each one maps to something the app actually does. */
+ *  domain authority no app site will beat, so the guides target the
+ *  task-shaped and problem-shaped long-tails underneath them instead. The
+ *  January, calendar and no-buy guides come from a Google autocomplete
+ *  harvest on 2026-11-09: each seed returned rules, printable, tracker,
+ *  calendar or app completions. Each guide maps to something the app does. */
 
-export type Guide = {
-  slug: string;
-  title: string;
-  metaTitle: string;
-  description: string;
-  intro: string;
-  sections: { h: string; p: string[] }[];
-  faq: { q: string; a: string }[];
-  takeaway: string;
-  related: string[];
-};
+import type { Content, Guide } from "./types";
 
-export const APP = {
-  name: "FrugalStreak",
-  fullName: "FrugalStreak — No Spend Tracker",
-  tagline: "No budget. Just a streak.",
-  author: "Neil Brazil",
-  minOS: "iOS 18",
-  price: "Free",
-};
-
-export const HERO = {
-  h1: "A no-spend tracker that is only a streak",
-  sub:
-    "Tap a Home Screen widget on every day you get through without an impulse buy, and watch the run of days build up. There is no budget to set up and no bank account to connect.",
-};
-
-export const FEATURES: { h: string; p: string }[] = [
-  {
-    h: "Log the day from your Home Screen",
-    p: "The whole widget is a button. Tap it once and today is logged, without FrugalStreak ever opening. That is the shortest possible distance between getting through a day and recording that you did.",
-  },
-  {
-    h: "You decide what counts",
-    p: "Most people don't count rent, bills or the weekly shop. Write your own one-line rule during setup and the app shows it back to you. Nothing is categorised and nothing is scored, so there is no argument with yourself at 9pm about whether a coffee broke the rule.",
-  },
-  {
-    h: "The run of days is the point",
-    p: "A calendar of the last five weeks sits on the first screen, next to the current count. Missed logging a day? Tap it in the calendar. Watching a block of days fill in is the reason streaks work at all, so it is the first thing you see rather than something buried in a report.",
-  },
-  {
-    h: "Being honest costs you nothing",
-    p: "Tap \"I spent today\" and the current streak goes to zero, which is the whole point of a streak. Your best-ever run is kept and stays on screen. An app that punished you for telling the truth would just teach you to lie to it.",
-  },
-  {
-    h: "Badges at 7, 30 and 100 days",
-    p: "Three milestones, earned from your best streak rather than your current one, so a reset can never take one back. They are free, and so is the celebration when you hit one.",
-  },
-  {
-    h: "No account and no bank connection",
-    p: "There is no sign-up and no server. Your streak lives on your device and the app works with the network switched off. Nothing about your spending is transmitted anywhere, because there is nothing to transmit.",
-  },
-];
-
-export const PRO = {
-  h: "FrugalStreak Unlocked",
-  p: "Everything above is free with no time limit. The paid unlock adds two things for people who stay with it long enough to want a record.",
-  points: [
-    "Your full streak history: every run you have finished, with its length and dates, not just the one you are on",
-    "Custom widget colours",
-    "Logging, the streak count, the calendar and the badges all stay free",
-  ],
-  pricing: "$2.99, paid once. There is no subscription.",
-};
-
-export const FAQ: { q: string; a: string }[] = [
-  {
-    q: "Is FrugalStreak free?",
-    a: "Yes. Logging today or yesterday as a no-spend day, your streak count, the calendar and the milestone badges are free with no time limit. A one-time $2.99 unlock adds your full streak history, custom widget colours and logging any earlier day, and removes the small banner advert shown to free users.",
-  },
-  {
-    q: "Do I have to connect my bank account?",
-    a: "No, and you cannot. FrugalStreak has no bank linking, no transaction import and no server. It never sees a penny of your actual spending. You tell it whether today was a no-spend day and that is the entire input.",
-  },
-  {
-    q: "What counts as spending?",
-    a: "Whatever you decide. During setup you write a single line describing your own rule, and the app shows it back to you rather than judging it. Most people exclude rent, bills and groceries, and count everything discretionary.",
-  },
-  {
-    q: "What happens when I break the streak?",
-    a: "Tap \"I spent today\" and the current streak resets to zero. Your longest-ever streak is kept and stays visible, and any badges you have earned stay earned. Resetting honestly never costs you your record.",
-  },
-  {
-    q: "Do I need to open the app every day?",
-    a: "No. Add the widget to your Home Screen and one tap logs the day. The streak updates and the app stays closed.",
-  },
-  {
-    q: "Is there a subscription?",
-    a: "No. There is one optional purchase at $2.99 and you own it. Nothing renews.",
-  },
-  {
-    q: "Can I track more than one thing?",
-    a: "No. FrugalStreak tracks one no-spend streak, and the constraint is deliberate. If you want categories and budgets there are good apps for that, built on the opposite bet to this one.",
-  },
-  {
-    q: "Does it work offline?",
-    a: "Yes. Everything except the optional purchase works with no network connection, because your streak is stored on the device.",
-  },
-];
-
-export const GUIDES: Guide[] = [
+const GUIDES: Guide[] = [
   {
     slug: "no-spend-challenge-rules",
+    published: "2026-09-09",
+    updated: "2026-09-09",
     title: "How to write no-spend challenge rules you will actually follow",
     metaTitle: "No-Spend Challenge Rules: How to Write Ones That Stick",
     description:
@@ -171,6 +75,8 @@ export const GUIDES: Guide[] = [
   },
   {
     slug: "what-counts-as-spending",
+    published: "2026-09-09",
+    updated: "2026-09-09",
     title: "What counts as spending on a no-spend day?",
     metaTitle: "What Counts as Spending on a No-Spend Day?",
     description:
@@ -236,6 +142,8 @@ export const GUIDES: Guide[] = [
   },
   {
     slug: "track-no-spend-days-iphone",
+    published: "2026-09-09",
+    updated: "2026-11-09",
     title: "How to track no-spend days on your iPhone",
     metaTitle: "How to Track No-Spend Days on iPhone",
     description:
@@ -267,8 +175,14 @@ export const GUIDES: Guide[] = [
       {
         h: "Make the trigger a moment, not a time",
         p: [
-          "Reminders at 9pm work badly, because 9pm is not when you know whether the day held. Tie the log to something that already happens: getting into bed, plugging the phone in, closing the front door behind you.",
-          "Because the widget is on the Home Screen, unlocking your phone at that moment is enough of a prompt. You do not need a notification, which is useful, because a notification you dismiss twice becomes invisible.",
+          "Tie the log to something that already happens every evening: getting into bed, plugging the phone in, closing the front door behind you. Because the widget is on the Home Screen, unlocking your phone at that moment is enough of a prompt.",
+          "A reminder is still worth having as a backstop, as long as it only appears when it is needed. FrugalStreak's evening reminder is optional and only arrives on days you haven't logged, with a Log button in the notification itself. A reminder that fires every night whether or not you have logged becomes one you dismiss without reading.",
+        ],
+      },
+      {
+        h: "Log from wherever you are",
+        p: [
+          "The widget is not the only way in. FrugalStreak also adds a Control Center control, and Siri understands \"Log today in FrugalStreak\". If you forgot last night, yesterday can be logged the next morning by tapping it in the calendar, because a no-spend day is only certain once it is over.",
         ],
       },
       {
@@ -289,7 +203,7 @@ export const GUIDES: Guide[] = [
     faq: [
       {
         q: "Can I log a no-spend day without opening the app?",
-        a: "Yes. The FrugalStreak widget is itself the button. Tapping it on your Home Screen logs the day and updates the streak with the app closed.",
+        a: "Yes. The FrugalStreak widget is itself the button, so tapping it on your Home Screen logs the day with the app closed. Control Center and Siri do the same.",
       },
       {
         q: "Do I need to link my bank to track no-spend days?",
@@ -302,6 +216,8 @@ export const GUIDES: Guide[] = [
   },
   {
     slug: "broke-my-no-spend-streak",
+    published: "2026-09-09",
+    updated: "2026-09-09",
     title: "You broke your no-spend streak. Now what?",
     metaTitle: "I Broke My No-Spend Streak: What to Do Next",
     description:
@@ -368,6 +284,8 @@ export const GUIDES: Guide[] = [
   },
   {
     slug: "no-spend-challenge-widget",
+    published: "2026-09-09",
+    updated: "2026-11-09",
     title: "Put your no-spend challenge on your Home Screen",
     metaTitle: "No-Spend Challenge Widget for iPhone",
     description:
@@ -397,16 +315,17 @@ export const GUIDES: Guide[] = [
         ],
       },
       {
-        h: "Where to put it",
+        h: "Where to put it, and which size",
         p: [
           "Put it on the page you unlock into, ideally next to whichever app is your own weak point. If your problem is a marketplace app, the streak should sit beside it rather than on a tidy second page.",
-          "Small is usually better than large here. A small widget fits alongside the apps you actually use, and the number is the only thing that needs to be legible.",
+          "The small widget is free and is the right default: it fits alongside the apps you actually use, and the number is the only thing that needs to be legible. The paid unlock adds a calendar widget in medium and large sizes. The large one shows nine weeks at a glance, which is the version to choose if seeing the run of days motivates you more than the count does.",
+          "In the evening the widget shows when today is still open, so a day you have not logged yet looks different from one you have.",
         ],
       },
       {
         h: "Make it yours",
         p: [
-          "The widget follows your system appearance and shows the current count against your accent colour. The paid unlock adds a choice of accent colours, which sounds cosmetic but is not entirely: a widget that fits your Home Screen is one you leave in place, and a widget you leave in place is one you keep tapping.",
+          "The widget follows your system appearance and shows the current count against your accent colour. The paid unlock adds a choice of colours, including a black-and-white Mono style, which sounds cosmetic but is not entirely: a widget that fits your Home Screen is one you leave in place, and a widget you leave in place is one you keep tapping.",
         ],
       },
     ],
@@ -417,7 +336,7 @@ export const GUIDES: Guide[] = [
       },
       {
         q: "Which widget size should I use?",
-        a: "The small one, in most cases. It sits alongside your regular apps rather than displacing a row of them, and the only thing that has to be readable is the number.",
+        a: "The small one, in most cases. It sits alongside your regular apps rather than displacing a row of them. If you want to see the run of days rather than just the count, the medium and large calendar widgets come with the unlock.",
       },
     ],
     takeaway:
@@ -426,6 +345,8 @@ export const GUIDES: Guide[] = [
   },
   {
     slug: "no-spend-challenge-vs-budgeting",
+    published: "2026-09-09",
+    updated: "2026-09-09",
     title: "No-spend challenge or budget: which should you try first?",
     metaTitle: "No-Spend Challenge vs Budgeting: Which to Try First",
     description:
@@ -482,8 +403,363 @@ export const GUIDES: Guide[] = [
     takeaway:
       "Unplanned buying is a habit problem, so use a streak. Not knowing where the money goes is an information problem, so use a budget.",
     related: ["no-spend-challenge-rules", "what-counts-as-spending"],
+  },  {
+    slug: "no-spend-january",
+    published: "2026-11-09",
+    updated: "2026-11-09",
+    title: "No-spend January: rules, a calendar and how to last all 31 days",
+    metaTitle: "No-Spend January: Rules, Calendar and a 31-Day Plan",
+    description:
+      "A no-spend January works when the rules are set before the 1st and every day is logged. The rules, the hard days to plan for, and a free calendar.",
+    intro:
+      "A no-spend January is a month of buying only what you decided in advance was essential. It works when the rules are written down before the 1st, the three or four hard days are planned for, and every day gets logged, including the ones that go wrong.",
+    sections: [
+      {
+        h: "Why January works for this",
+        p: [
+          "December spending is still on your statement, the new year gives you a clean start date, and plenty of other people are trying the same thing, which helps more than it sounds. For anyone paid early in December, January is also the longest gap between paydays of the year, so spending less in it is partly a necessity anyway.",
+          "A month is also the right length for a first attempt. It is long enough to break the habit of an unplanned purchase every few days, and short enough that the end is in sight from the first weekend.",
+        ],
+      },
+      {
+        h: "Write the rules on 31 December",
+        p: [
+          "Decide what is exempt before the month starts, not on the 4th when you are standing in a shop. Nearly everyone exempts rent or mortgage, bills, the weekly food shop, transport to work and prescriptions. Everything else counts.",
+          "Then settle the cases you already know will come up. A January birthday present, a subscription that renews mid-month, coffee at work: pick a side for each and write it into one sentence you can check in a second. \"Bills, the food shop and travel to work don't count\" is a rule. \"Only necessary spending\" is not.",
+        ],
+      },
+      {
+        h: "Plan for the days that break most attempts",
+        p: [
+          "The first weekend is the first real test, because the routine that usually involves spending is still intact. Plan something specific and free for it in advance.",
+          "The January sales are the second. A discount does not make a purchase essential. Unsubscribing from retailers' emails on the 31st removes most of the temptation before it arrives.",
+          "Payday is the third. When money arrives, the urge to reward yourself for three weeks of discipline is strong. Decide before the month starts what happens to the money you did not spend, so payday has a job to do.",
+        ],
+      },
+      {
+        h: "Log every day, including the bad ones",
+        p: [
+          "A month you only track on good days tells you nothing. Tick each day you get through and leave the day you spent blank. By the end of the month the gaps show you exactly which days and which situations caught you, which is the most useful thing the month produces.",
+          "Logging works best when it takes one action at the same moment each evening. That can be a pen and the printable calendar below, or a Home Screen widget you tap before bed.",
+        ],
+      },
+      {
+        h: "If you slip, start again the same day",
+        p: [
+          "One bad day does not end a no-spend January. Mark it honestly and carry on. A month with 26 ticked days is a far better result than one you abandoned on the 9th because the perfect streak was gone.",
+          "FrugalStreak works this way on purpose. Breaking the streak resets the current count, but your best run and any badges you have earned are kept, so being honest never costs you the record you built.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "When should a no-spend January start?",
+        a: "On 1 January, with the rules written the day before. Starting mid-month works too, but a calendar month gives you a clear finish line and a clean page to log on.",
+      },
+      {
+        q: "Is a no-spend January the same as a no-buy January?",
+        a: "Not quite. A no-spend January counts days with no spending outside your essentials. A no-buy January usually bans particular categories, such as clothes or takeaways, while other spending carries on as normal.",
+      },
+    ],
+    takeaway:
+      "Write the rules on the 31st, plan the first weekend and payday, and log every day, especially the one you get wrong.",
+    related: ["no-spend-calendar", "no-spend-challenge-rules"],
+    printable: {
+      file: "printables/no-spend-calendar-2027-en.pdf",
+      label: "Download the free 2027 no-spend calendar (PDF)",
+    },
+  },
+  {
+    slug: "no-spend-calendar",
+    published: "2026-11-09",
+    updated: "2026-11-09",
+    title: "Free no-spend calendar for 2027 (printable PDF)",
+    metaTitle: "Free No-Spend Calendar 2027: Printable PDF",
+    description:
+      "A free printable no-spend calendar for 2027: one month per page, a box for every day and a line for your rule. No email address needed.",
+    intro:
+      "This is a free no-spend calendar for 2027: twelve pages, one month each, with a box for every day and a line at the top for your rule. Print the month you are starting, tick each day you get through without unplanned spending, and keep it somewhere you pass every evening. No email address needed.",
+    sections: [
+      {
+        h: "What is in it",
+        p: [
+          "Each page is one month of 2027 on US Letter paper, with weeks starting on Sunday. There is a line at the top to write your rule, a box for every day, and a space at the bottom for your best run that month.",
+          "That is deliberately all. A no-spend calendar works because it asks one question a day, and every extra column (amount saved, what you nearly bought, which category) is upkeep you will stop doing in week two.",
+        ],
+      },
+      {
+        h: "How to use it",
+        p: [
+          "Write your rule on the top line before the 1st: what is exempt, and what counts. Most people exempt rent, bills, the food shop and transport to work.",
+          "Each evening, tick the day if you got through it, and leave it empty if you did not. Do it at the same moment every night, such as when you plug your phone in, so it does not depend on remembering.",
+          "At the end of the month, count your longest unbroken run and write it at the bottom. Next month, that is the number to beat.",
+        ],
+      },
+      {
+        h: "Why a calendar works better than a list",
+        p: [
+          "A calendar shows the shape of the month at a glance. A run of ticked days is something you don't want to break, and the empty boxes show you which days of the week catch you, which a running total never would.",
+          "That is the whole idea behind not breaking the chain, and it is why the calendar needs to be somewhere you cannot avoid looking. A page in a drawer stops working within a week.",
+        ],
+      },
+      {
+        h: "Paper or phone?",
+        p: [
+          "Paper is good if the calendar can live on the fridge or beside your bed, where you see it every evening. A phone is better if you are likely to forget, because it is always with you.",
+          "FrugalStreak is the phone version of the same page. The calendar of the last five weeks sits beside your current streak, a Home Screen widget logs the day with one tap, and an optional evening reminder appears only on days you haven't logged. Plenty of people use both: the app to log, and the paper to look at.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Is the no-spend calendar really free?",
+        a: "Yes. It is a direct PDF download with no sign-up and no email address. Print as many copies as you like.",
+      },
+      {
+        q: "Can I print just one month?",
+        a: "Yes. Each month is its own page, so choose the page you want in your printer's settings.",
+      },
+    ],
+    takeaway:
+      "Write the rule at the top, tick one box each evening, and keep the page where you will see it.",
+    related: ["no-spend-january", "track-no-spend-days-iphone"],
+    printable: {
+      file: "printables/no-spend-calendar-2027-en.pdf",
+      label: "Download the free 2027 no-spend calendar (PDF)",
+    },
+  },
+  {
+    slug: "no-buy-challenge",
+    published: "2026-11-09",
+    updated: "2026-11-09",
+    title: "No-buy challenge or no-spend challenge? Rules, ideas and how to choose",
+    metaTitle: "No-Buy Challenge: Rules, Ideas and How It Differs",
+    description:
+      "A no-buy challenge bans a category of things for months. A no-spend challenge counts days with no unplanned spending. The rules for each, and how to choose.",
+    intro:
+      "A no-buy challenge stops you buying a category of things, such as clothes, books or make-up, for a set period, often a whole year. A no-spend challenge counts the days on which you spend nothing outside your essentials. One targets a category, the other targets a daily habit, and the right one depends on where your money actually goes.",
+    sections: [
+      {
+        h: "How a no-buy challenge works",
+        p: [
+          "You write two lists. The no-buy list is the categories you will not buy at all for the period. The allowed list is what you can still buy, usually essentials and like-for-like replacements when something runs out or wears out.",
+          "Periods run from a month to a year. Three months is a sensible first attempt: long enough to break the habit of browsing, short enough to keep the rules strict.",
+        ],
+      },
+      {
+        h: "How a no-spend challenge works",
+        p: [
+          "A no-spend challenge works by the day rather than by category. You exempt the essentials, usually rent, bills, the food shop and transport, and any other purchase means the day does not count.",
+          "It is stricter on any given day and looser over time, because the next day starts fresh. Most people run it as a streak and try to beat their longest run.",
+        ],
+      },
+      {
+        h: "Which one to pick",
+        p: [
+          "If most of your unplanned spending lands in one or two categories, such as a wardrobe that keeps growing or a stack of unread books, a no-buy challenge goes straight at the problem.",
+          "If it is spread thin across lots of small things, such as takeaway coffee, a late-night delivery or a few items added to a basket, a no-spend challenge works better, because it catches all of them without you having to list them.",
+        ],
+      },
+      {
+        h: "Ideas for a no-buy list",
+        p: [
+          "The categories that turn up most often are clothes and shoes, books, beauty and skincare, homeware and decorations, gadgets and accessories, hobby supplies, and takeaway food and drink.",
+          "Pick the two or three that you know cost you the most, rather than all of them. A short list you keep is worth far more than a long one you abandon in February.",
+        ],
+      },
+      {
+        h: "Running both at once",
+        p: [
+          "The two combine well. Make your no-buy list your daily rule, and count every day you keep it. A day you buy something on the list ends the streak, and everything else carries on as normal.",
+          "In FrugalStreak, that means writing the list as your rule during setup, for example \"No clothes, books or takeaways\", and tapping the widget each evening you kept it.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "How long should a no-buy challenge last?",
+        a: "Three months is a good first attempt. Year-long challenges are popular, but a shorter one you finish teaches you more than a long one you abandon.",
+      },
+      {
+        q: "Can I use FrugalStreak for a no-buy challenge?",
+        a: "Yes. Write your no-buy list as your rule during setup and log each day you kept it. The streak then counts days without buying anything on your list.",
+      },
+    ],
+    takeaway:
+      "Spending concentrated in one category calls for a no-buy list. Spending spread across lots of small things calls for a no-spend streak.",
+    related: ["no-spend-challenge-rules", "what-counts-as-spending"],
   },
 ];
 
-export const guideBySlug = (slug: string) =>
-  GUIDES.find((g) => g.slug === slug)!;
+const SHOT = (file: string, alt: string, caption: string) => ({
+  file,
+  alt,
+  caption,
+});
+
+export const en: Content = {
+  lang: "en",
+  ogLocale: "en_US",
+  langName: "English",
+  prefix: "",
+  updated: "2026-11-09",
+
+  app: { tagline: "No budget. Just a streak.", price: "Free" },
+  meta: {
+    title: "FrugalStreak — No Spend Tracker, Widget and Calendar",
+    description:
+      "Log no-spend days with one tap from a Home Screen widget, see them on a calendar, and keep your streak. No budget, no bank login. Free on iPhone and iPad.",
+  },
+  hero: {
+    h1: "A no-spend tracker that is only a streak",
+    sub:
+      "Tap a Home Screen widget on every day you get through without an impulse buy, and watch the days fill in on a calendar. There is no budget to set up and no bank account to connect.",
+    shot: SHOT(
+      "hero",
+      "FrugalStreak's large calendar widget and small streak widget on an iPhone Home Screen, both showing a 100-day no-spend streak",
+      "",
+    ),
+  },
+  gallery: {
+    h: "What it looks like",
+    shots: [
+      SHOT(
+        "streak",
+        "The FrugalStreak main screen: a 100-day streak, the user's rule, a log button and a calendar of the last five weeks",
+        "Your streak, your rule and the last five weeks",
+      ),
+      SHOT(
+        "widget-style",
+        "The widget style screen with a light and dark preview and a choice of ten colours",
+        "Pick a widget colour, light or dark",
+      ),
+      SHOT(
+        "archive",
+        "Milestone badges and a list of past streaks with their lengths and dates",
+        "Badges you keep and every past run",
+      ),
+    ],
+  },
+  features: [
+    {
+      h: "Log the day from your Home Screen",
+      p: "The whole widget is a button. Tap it once and today is logged, without FrugalStreak ever opening. Control Center and Siri work too: say \"Log today in FrugalStreak\".",
+    },
+    {
+      h: "You decide what counts",
+      p: "Most people don't count rent, bills or the weekly shop. Write your own one-line rule during setup and the app shows it back to you. Nothing is categorised and nothing is scored, so there is no argument with yourself at 9pm about whether a coffee broke the rule.",
+    },
+    {
+      h: "The run of days is the point",
+      p: "A calendar of the last five weeks sits on the first screen, next to the current count. Forgot to log yesterday? Tap it in the calendar. Watching a block of days fill in is the reason streaks work at all, so it is the first thing you see.",
+    },
+    {
+      h: "A reminder only when you need one",
+      p: "Turn on the evening reminder and it arrives only on days you haven't logged, with a Log button in the notification itself. In the evening, the app and widgets also show when today is still open.",
+    },
+    {
+      h: "Badges at 3, 7, 14, 30 and 100 days",
+      p: "Five milestones, earned from your best streak rather than your current one, so a reset can never take one back. They are free, and so is the celebration when you reach one.",
+    },
+    {
+      h: "Being honest costs you nothing",
+      p: "Tap \"I spent today\" and the current streak goes to zero, which is the whole point of a streak. Your best-ever run is kept and stays on screen. An app that punished you for telling the truth would just teach you to lie to it.",
+    },
+    {
+      h: "No account and no bank connection",
+      p: "There is no sign-up and no server. Your streak lives on your device and the app works with the network switched off. Nothing about your spending is transmitted anywhere, because there is nothing to transmit.",
+    },
+    {
+      h: "iPhone, iPad and iPhone Duo",
+      p: "On iPad and on the unfolded iPhone Duo, the calendar sits beside your streak, and the layout follows as you fold and unfold. FrugalStreak is available in English, German, French and Spanish.",
+    },
+  ],
+  pro: {
+    h: "FrugalStreak Unlocked",
+    p: "Everything above is free with no time limit. One purchase adds the extras, for people who stay with it long enough to want a record.",
+    points: [
+      "Your full streak archive: every run you have finished, with its length and dates",
+      "The calendar widget in medium and large sizes, with nine weeks at a glance on the large one",
+      "Custom widget colours, including Mono",
+      "Logging any earlier day in the calendar",
+      "No banner advert",
+      "Logging today and yesterday, the streak count, the calendar and the badges all stay free",
+    ],
+    pricing: "$2.99, paid once. There is no subscription.",
+  },
+  faq: [
+    {
+      q: "Is FrugalStreak free?",
+      a: "Yes. Logging today or yesterday as a no-spend day, your streak count, the calendar, the milestone badges and the evening reminder are free with no time limit. A one-time $2.99 unlock adds your full streak archive, the medium and large calendar widgets, custom widget colours and logging any earlier day, and removes the small banner advert shown to free users.",
+    },
+    {
+      q: "Do I have to connect my bank account?",
+      a: "No, and you cannot. FrugalStreak has no bank linking, no transaction import and no server. It never sees a penny of your actual spending. You tell it whether today was a no-spend day and that is the entire input.",
+    },
+    {
+      q: "What counts as spending?",
+      a: "Whatever you decide. During setup you write a single line describing your own rule, and the app shows it back to you rather than judging it. Most people exclude rent, bills and groceries, and count everything discretionary.",
+    },
+    {
+      q: "What happens when I break the streak?",
+      a: "Tap \"I spent today\" and the current streak resets to zero. Your longest-ever streak is kept and stays visible, and any badges you have earned stay earned. Resetting honestly never costs you your record.",
+    },
+    {
+      q: "Do I need to open the app every day?",
+      a: "No. Add the widget to your Home Screen and one tap logs the day with the app closed. You can also log from Control Center or by asking Siri.",
+    },
+    {
+      q: "Will it remind me?",
+      a: "Only if you want it to. The evening reminder is optional, and it only arrives on days you haven't logged yet. You can log straight from the notification.",
+    },
+    {
+      q: "Does it work on iPad and iPhone Duo?",
+      a: "Yes. On iPad and on the unfolded iPhone Duo, the calendar sits beside your streak, and the layout adjusts as you fold and unfold the phone.",
+    },
+    {
+      q: "Is there a subscription?",
+      a: "No. There is one optional purchase at $2.99 and you own it. Nothing renews.",
+    },
+    {
+      q: "Can I track more than one thing?",
+      a: "No. FrugalStreak tracks one no-spend streak, and the constraint is deliberate. If you want categories and budgets there are good apps for that, built on the opposite bet to this one.",
+    },
+    {
+      q: "Does it work offline?",
+      a: "Yes. Everything except the optional purchase works with no network connection, because your streak is stored on the device.",
+    },
+  ],
+  guides: GUIDES,
+
+  ui: {
+    navFeatures: "Features",
+    navGuides: "Guides",
+    navFaq: "FAQ",
+    download: "Download on the App Store",
+    downloadAria: "Download {app} on the App Store",
+    metaLine: "Free · iPhone and iPad · No account · Works offline",
+    featuresH: "What it does",
+    guidesH: "Guides",
+    guidesLede:
+      "How to set the rules, decide what counts, get through January, and keep going after the day you slip.",
+    faqH: "Common questions",
+    guideFaqH: "Questions about this",
+    readNext: "Read next",
+    callout:
+      "tracks this as one number. Tap a Home Screen widget on every day you get through, with no budget and no bank connection.",
+    ctaH: "Start a streak today",
+    ctaLede:
+      "Pick your rule, put the widget on your Home Screen, and tap it tonight.",
+    home: "Home",
+    privacy: "Privacy Policy",
+    terms: "Terms of Use",
+    support: "Support",
+    madeBy: "{app} is made by {author}.",
+    notAffiliated:
+      "Not affiliated with Apple Inc. App Store is a trademark of Apple Inc.",
+    moreApps: "More apps by Neil",
+    languages: "Language",
+    breadcrumb: "Breadcrumb",
+    updated: "Updated",
+  },
+};

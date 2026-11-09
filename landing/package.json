@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
-    "deploy": "npm run build && node scripts/deploy.mjs"
+    "assets": "vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/assets.mjs",
+    "verify": "node scripts/verify.mjs",
+    "deploy": "npm run build && node scripts/verify.mjs && node scripts/deploy.mjs"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
